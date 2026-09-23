@@ -35,12 +35,36 @@ export type Database = {
         }
         Relationships: []
       }
+      auth_rate_limits: {
+        Row: {
+          attempts: number
+          identifier: string
+          operation: string
+          window_start: string
+        }
+        Insert: {
+          attempts: number
+          identifier: string
+          operation: string
+          window_start: string
+        }
+        Update: {
+          attempts?: number
+          identifier?: string
+          operation?: string
+          window_start?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      consume_auth_rate_limit: {
+        Args: { p_key: string; p_operation: string }
+        Returns: boolean
+      }
     }
     Enums: {
       [_ in never]: never

@@ -1,6 +1,6 @@
 # Plano de implementação incremental
 
-Status: Fase 1 implementada; Fase 2 preparada, pendente de validação em banco e configuração do Cloud de desenvolvimento; fases 3–19 não iniciadas.
+Status: Fase 1 implementada; infraestrutura da Fase 2 presente; Fase 3 implementada em código, pendente de configuração/provisionamento confirmado e homologação remota. Fases 4–19 não iniciadas.
 Base: [PROJECT_SPEC.md](PROJECT_SPEC.md) e [ARCHITECTURE.md](ARCHITECTURE.md).
 
 Cada fase entrega uma capacidade pequena e verificável. Os caminhos abaixo são previstos, não arquivos já criados. Não fazer commits automaticamente. Revisar requisitos e impacto antes de iniciar cada fase; atualizar documentação quando uma decisão mudar.
@@ -32,6 +32,8 @@ Registro de execução (23/09/2026): clientes separados, validação de ambiente
 - **Verificações:** aplicar/resetar migrations em banco descartável, gerar tipos sem drift, testar grants/RLS e falha por variável ausente; executar a regra geral.
 
 ## Fase 3 — Acesso administrativo
+
+Registro de execução (23/09/2026): login/logout/recuperação PKCE, renovação SSR, guard com sessão verificada e `admin_users.active`, painel vazio, API de confirmação, proteção de Actions, rate limiting PostgreSQL, redirects restritos e testes locais implementados. Consulta ao histórico confirmou a migration da Fase 2 aplicada; dry-run confirmou somente a nova migration de rate limiting pendente. Conta real não criada, conforme parada exigida pelo usuário. Aplicação da nova migration, regeneração dos tipos, pgTAP e E2E autenticado permanecem pendentes. Procedimento e limitações em [ADMIN_AUTH.md](ADMIN_AUTH.md). Não considerar homologada nem avançar à Fase 4.
 
 - **Objetivo:** permitir somente o acesso autenticado da fotógrafa.
 - **Funcionalidades:** provisionamento controlado de uma conta, cadastro público desativado, login, logout, recuperação, renovação SSR e guard por sessão validada mais `admin_users.active`; painel vazio protegido; rate limiting de autenticação, redirects permitidos e proteção de mutações.
@@ -173,4 +175,4 @@ Migração para R2/S3 deve ser um projeto próprio: adaptador e testes de contra
 
 Contas de clientes, favoritos persistentes, aprovação, pagamentos, venda de fotos, calendário, notificações automáticas e CRM exigem novos requisitos e fases próprias. A seleção temporária de fotos e os ZIPs já pertencem às fases 11–12.
 
-A implementação atual termina na preparação da Fase 2; sua validação em banco está pendente. A Fase 3 exige nova instrução; nenhum serviço externo foi provisionado.
+A implementação atual termina no código da Fase 3. Nenhuma conta foi provisionada nesta etapa; a criação real exige confirmação explícita. Homologação e configuração pendentes estão em [ADMIN_AUTH.md](ADMIN_AUTH.md). Não avançar para a Fase 4.

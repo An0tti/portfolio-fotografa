@@ -1,23 +1,25 @@
-# Acesso a dados — Fase 2
+# Acesso a dados — Fases 2 e 3
 
 ## Estado e limites
 
-Infraestrutura implementada sem acesso remoto. A página técnica não usa Supabase.
-Não há login, guard, proxy de renovação, painel, CRUD, conta provisionada ou Storage.
-A Fase 2 permanece pendente de aplicar/resetar SQL, executar pgTAP e gerar tipos
-em um Supabase descartável. `src/types/database.ts` é um contrato provisório
-derivado da migration, explicitamente identificado; não é uma geração verificada.
+A página técnica não usa Supabase. A Fase 3 adiciona login, guard, Proxy de renovação
+e painel vazio; não há CRUD, conta provisionada nesta etapa ou Storage. O histórico
+remoto consultado confirmou a migration de `admin_users` aplicada. A nova migration
+de rate limiting tem dry-run conferido, mas aplicação pendente. O contrato da nova
+RPC em `src/types/database.ts` é manual até a regeneração. A execução atual não
+comprova pgTAP/reconstrução nem drift remoto. Ver [ADMIN_AUTH.md](ADMIN_AUTH.md).
 
 ## Clientes e ambiente
 
 - `browser.ts`: somente URL e Publishable Key públicas; cookies via `@supabase/ssr`.
 - `server.ts`: `server-only`, cliente por requisição, mesma chave pública e RLS.
-  Cookies são somente leitura por padrão; Server Actions/Route Handlers futuros
-  devem optar por `writableCookies: true`. Renovação/validação de sessão pertence
-  à Fase 3; esta fábrica não autentica nem autoriza uma operação.
+  Cookies são somente leitura por padrão; Server Actions/Route Handlers
+  optam por `writableCookies: true`. O Proxy renova sessão; `requireAdmin`
+  autentica e autoriza cada entrada administrativa, além do layout.
 - `privileged.ts`: `server-only`, Secret Key, sem persistência, refresh ou cookies.
-  Ignora RLS: só poderá ser chamado depois de autorização explícita do caso de uso.
-  Não há consumidores privilegiados nesta fase.
+  Ignora RLS: casos de uso precisam restringir explicitamente cada operação.
+  Na Fase 3, o adaptador de rate limiting é o único consumidor e chama somente uma
+  RPC fixa, autorizada para entrada pública de autenticação, sem acesso a usuários.
 - Não criar um barrel que reexporte os três clientes. Componentes visuais não
   importam repositories nem módulos de ambiente privado.
 
