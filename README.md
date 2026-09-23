@@ -1,6 +1,6 @@
 # Portfolio Fotógrafa
 
-Fundação técnica de um projeto Next.js com App Router, React, TypeScript estrito e Tailwind CSS. Somente a Fase 1 está implementada: a rota `/` exibe uma página técnica de confirmação.
+Projeto Next.js com App Router, React, TypeScript estrito e Tailwind CSS. Fase 1 implementada e infraestrutura da Fase 2 preparada; validação em banco pendente. A rota `/` continua exibindo apenas a página técnica.
 
 ## Pré-requisitos
 
@@ -21,7 +21,7 @@ npm run dev
 
 Acesse [http://localhost:3000](http://localhost:3000). A página deve mostrar “Aplicação funcionando.”. Para encerrar, use `Ctrl+C` no terminal.
 
-Nenhuma variável de ambiente é necessária nesta fase. `.env.example` contém apenas um placeholder público comentado, reservado para a origem do site. Não é preciso criar `.env.local`. Quando houver variáveis em uso, copie o exemplo, substitua os placeholders e mantenha valores reais somente no arquivo local ignorado pelo Git. Não há configuração de Supabase nesta etapa.
+O build e a página técnica não exigem credenciais. Para usar os clientes Supabase, copie `.env.example` para `.env.local` e preencha o ambiente correspondente. Consulte [acesso a dados e configuração local/staging](docs/DATA_ACCESS.md) para variáveis, migrations, geração de tipos e passos manuais pendentes.
 
 ## Comandos
 
@@ -30,11 +30,11 @@ Nenhuma variável de ambiente é necessária nesta fase. `.env.example` contém 
 | `npm run dev` | Servidor de desenvolvimento |
 | `npm run lint` | ESLint; qualquer warning faz a verificação falhar |
 | `npm run typecheck` | Gera os tipos de rotas do Next.js e executa TypeScript sem emitir código |
-| `npm test` | Executa o runner Vitest preparado para testes unitários futuros |
+| `npm test` | Testes de ambiente, isolamento dos clientes e erros sanitizados |
 | `npm run build` | Gera o build de produção |
 | `npm start` | Serve o build de produção já gerado |
 
-O runner ainda não possui testes: nesta fase, `npm test` informa a ausência deles e termina com sucesso. Isso não representa cobertura de testes. Regras de negócio e testes correspondentes serão adicionados nas fases apropriadas; remover `passWithNoTests` ao adicionar a primeira suíte. O smoke da página consiste em iniciar o servidor e conferir a resposta de `/`.
+Vitest exige testes presentes. Os testes pgTAP serão executados no SQL Editor do projeto Cloud de desenvolvimento vazio. Os comandos `db:migrations:list`, `db:push:dry-run`, `db:push`, `db:types` e `db:types:check` estão descritos no guia de acesso a dados. Não é necessário Docker nem Supabase local.
 
 Antes de avançar, execute:
 
@@ -58,7 +58,7 @@ src/app/
   page.tsx               # página de confirmação
 ```
 
-O alias `@/*` aponta para `src/*` no TypeScript e no Vitest. Diretórios de domínio, features, infraestrutura e configurações de serviços serão criados apenas quando necessários. Nesta fase não há parâmetros de aplicação que justifiquem um módulo `src/config`.
+O alias `@/*` aponta para `src/*` no TypeScript e no Vitest. A Fase 2 acrescenta `src/config`, clientes em `src/infrastructure/supabase`, erros em `src/lib/errors`, tipos em `src/types` e SQL em `supabase`.
 
 ## Decisões da fundação
 
@@ -79,4 +79,4 @@ O alias `@/*` aponta para `src/*` no TypeScript e no Vitest. Diretórios de dom�
 - [Arquitetura](docs/ARCHITECTURE.md)
 - [Plano de implementação](docs/IMPLEMENTATION_PLAN.md)
 
-As fases seguintes não foram iniciadas. Não há banco, autenticação, painel, portfólio, galerias, upload, funcionalidades de cliente ou worker.
+A Fase 2 está preparada até o limite sem ambiente de banco. Fase 3 e posteriores não iniciadas; não há autenticação de produto, painel, portfólio, galerias, upload ou worker.

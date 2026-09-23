@@ -10,7 +10,5 @@ export default defineConfig({
   test: {
     environment: "node",
     include: ["src/**/*.test.ts", "tests/unit/**/*.test.ts"],
-    // A fase 1 prepara o runner; ainda não existem regras de negócio para testar.
-    passWithNoTests: true,
   },
 });

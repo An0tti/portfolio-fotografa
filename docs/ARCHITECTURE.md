@@ -1,6 +1,6 @@
 # Arquitetura técnica
 
-Status: arquitetura de referência; somente a Fase 1 (fundação técnica) implementada. Os módulos e serviços das fases seguintes permanecem planejados.
+Status: arquitetura de referência; Fase 1 implementada e infraestrutura da Fase 2 preparada, com validação em banco pendente. Fase 3 e posteriores permanecem planejadas. Detalhes e limites em [DATA_ACCESS.md](DATA_ACCESS.md).
 Data: 23/09/2026. Base: [PROJECT_SPEC.md](PROJECT_SPEC.md) e decisões do usuário.
 Sequência de entrega: [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 

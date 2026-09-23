@@ -1,0 +1,13 @@
+# CLI migration configuration; development database runs in Supabase Cloud.
+# This identifier is NOT a remote project reference. Link is a separate manual step.
+project_id = "portfolio-fotografa-dev"
+
+[db]
+major_version = 17
+
+[db.migrations]
+enabled = true
+
+[db.seed]
+enabled = false
+sql_paths = []
