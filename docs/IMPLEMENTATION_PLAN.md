@@ -1,6 +1,6 @@
 # Plano de implementação incremental
 
-Status: Fase 1 implementada; fases 2–19 não iniciadas.
+Status: Fase 1 implementada; Fase 2 preparada, pendente de validação em banco e configuração do Cloud de desenvolvimento; fases 3–19 não iniciadas.
 Base: [PROJECT_SPEC.md](PROJECT_SPEC.md) e [ARCHITECTURE.md](ARCHITECTURE.md).
 
 Cada fase entrega uma capacidade pequena e verificável. Os caminhos abaixo são previstos, não arquivos já criados. Não fazer commits automaticamente. Revisar requisitos e impacto antes de iniciar cada fase; atualizar documentação quando uma decisão mudar.
@@ -22,6 +22,8 @@ Registro de execução (23/09/2026): base criada com Next.js 16.3.6, React 19.3.
 - **Verificações:** instalação limpa pelo lockfile, lint, typecheck, build e smoke da página técnica; confirmar ausência de secrets. Se ainda não houver comportamento de negócio, registrar que testes de negócio não se aplicam.
 
 ## Fase 2 — Conexão de dados e migrations
+
+Registro de execução (23/09/2026): clientes separados, validação de ambiente, migration exclusiva de `admin_users`, testes unitários/pgTAP e comandos de geração preparados. Por decisão do usuário, desenvolvimento usa Supabase Cloud, sem Docker. Aplicação/reconstrução de migrations, testes SQL e geração real dos tipos permanecem pendentes da criação/conexão do projeto. O contrato TypeScript inicial é provisório. Não considerar esta fase integralmente validada. Procedimentos em [DATA_ACCESS.md](DATA_ACCESS.md).
 
 - **Objetivo:** estabelecer acesso tipado e isolado ao Supabase.
 - **Funcionalidades:** configurar ambiente local/staging, clientes SSR/browser/privilegiado separados, schemas de ambiente, migrations e geração de tipos; convenções de repository e erros; criar somente `admin_users` e suas restrições/políticas iniciais.
@@ -171,4 +173,4 @@ Migração para R2/S3 deve ser um projeto próprio: adaptador e testes de contra
 
 Contas de clientes, favoritos persistentes, aprovação, pagamentos, venda de fotos, calendário, notificações automáticas e CRM exigem novos requisitos e fases próprias. A seleção temporária de fotos e os ZIPs já pertencem às fases 11–12.
 
-A implementação atual termina na Fase 1. As próximas fases exigem uma nova instrução; nenhum serviço externo foi provisionado.
+A implementação atual termina na preparação da Fase 2; sua validação em banco está pendente. A Fase 3 exige nova instrução; nenhum serviço externo foi provisionado.
