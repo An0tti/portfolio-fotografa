@@ -1,0 +1,18 @@
+# Dependencies and generated output
+node_modules/
+.next/
+out/
+coverage/
+*.tsbuildinfo
+next-env.d.ts
+
+# Local environment files; only the documented example is versioned
+.env*
+!.env.example
+
+# Local tooling and logs
+.vercel/
+.npm-cache/
+*.log
+.DS_Store
+Thumbs.db
