@@ -1,6 +1,6 @@
 # Arquitetura técnica
 
-Status: arquitetura de referência; Fase 1 implementada e infraestrutura da Fase 2 preparada, com validação em banco pendente. Fase 3 e posteriores permanecem planejadas. Detalhes e limites em [DATA_ACCESS.md](DATA_ACCESS.md).
+Status: arquitetura de referência; Fase 1 implementada e infraestrutura da Fase 2 preparada. Fase 3 implementada em código, pendente de confirmação para provisionamento e de homologação remota; fases posteriores não iniciadas. Detalhes em [DATA_ACCESS.md](DATA_ACCESS.md) e [ADMIN_AUTH.md](ADMIN_AUTH.md).
 Data: 23/09/2026. Base: [PROJECT_SPEC.md](PROJECT_SPEC.md) e decisões do usuário.
 Sequência de entrega: [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 
